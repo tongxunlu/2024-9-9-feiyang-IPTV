@@ -20,3 +20,22 @@ http://你的IP:5678/xxx.php?id=xxx&xx=xxx...
 4.最后在IPTV播放器访问∶
 
 http://你的IP:5678/gudou.php?phone=你的手机号&ptoken=你的ptoken&pserialnumber=你的pserialnumber&cid=你的cid&id=谷豆频道对应id
+
+
+# php部署
+# 1、docker扩容：磁盘管理新增，格式ext4，挂载点新增，uuid选新增盘，挂载给docker,下方挂载点打√启用,重启系统
+# 2、ssh（finalshell）工具连接openwrt
+# 3、pwd进root文件夹
+# 4、下方root内新建test文件夹
+# 5、cd test
+# 6、上传xxxx.php进去
+# 7、docker run -d --restart unless-stopped --privileged=true -p 5658:80 --name php-env youshandefeiyang/php-env:arm64
+# 8、docker cp /root/test/xxxx.php php-env:/var/www/html/
+# 9、播放地址：http://软路由地址:5678/xxxx.php
+#    http://软路由地址:5678/xxx.php?id=xxx&xx=xxx...
+
+列出docker容器内文件
+docker exec -it php-env ls  
+删除xxx.php
+docker exec -it php-env rm xxx.php  
+docker exec php-env rm /var/www/html/xxx.php
